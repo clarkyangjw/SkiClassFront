@@ -49,17 +49,16 @@ function EditerUser(props) {
         {key: 'Mount St. Louis', value: 'Mount St. Louis Moonstone'},
         {key: 'Earl Bales', value: 'Earl Bales Ski & Snowboard'},
         {key: 'Snow Valley', value: 'Snow Valley'},
-        {key: 'Ski lakeridge', value: 'Ski lakeridge'},
         {key: 'Glen Eden', value: 'Glen Eden'},
+        {key: 'Lakeridge', value: 'Ski lakeridge'},
         {key: 'Skyloft', value: 'Skyloft'},
-        {key: 'Dagmar Ski Resort', value: 'Dagmar Ski Resort'}
+        {key: 'Dagmar', value: 'Dagmar Ski Resort'}
         
     ]
 
     const tagsCheckboxOption =[
         {key: 'snow', value: 'snow'},
         {key: 'winter', value: 'winter'},
-        {key: 'snowman', value: 'snowman'},
         {key: 'skiing', value: 'skiing'},
         {key: 'snowboarding', value: 'snowboarding'},
         {key: 'mountain', value: 'mountain'},
@@ -133,8 +132,9 @@ function EditerUser(props) {
                                 <FormikControl control='select'  label='Sport' name='skiSnowboard' options = {sportDropdownOptions}/><br/>
                                 <FormikControl control='select'  label='Level' name='skiLevel' options = {leveLDropdownOptions}/><br/>
                                 
-                                <FormikControl control='checkbox'  label='My Location:' name='favoriteLocation' options = {locationCheckboxOption}/><br/>
-                                <FormikControl control='checkbox'  label='My Tag: ' name='Taget' options = {tagsCheckboxOption}/><br/>
+                                <FormikControl control='checkbox'  label='My Location:' name='favoriteLocation' options = {locationCheckboxOption}/><br/><br/>
+                                
+                                <FormikControl control='checkbox'  label='My Tag: ' name='Taget' options = {tagsCheckboxOption}/><br/><br/>
                                 <button type="submit" >Save my profile</button>
                             </Form>
                         )
