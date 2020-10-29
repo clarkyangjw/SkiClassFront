@@ -7,7 +7,7 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 
 function Register(props) {
-    const APIstring = "http://localhost:8080/api";
+    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
     let history = useHistory();
     const initialValues = {
         email: '',
@@ -23,7 +23,7 @@ function Register(props) {
 
     const onSubmit = (values) => {
 
-        //alert('A form was submitted: ' + JSON.stringify(values));
+        //alert('A form was submitted: ' + JSON.s1tringify(values));
         //e.preventDefault();
         axios.post(`${APIstring}/register`, values)
             .then(res => {

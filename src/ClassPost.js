@@ -6,7 +6,7 @@ import { Form } from 'react-bootstrap'
 
 
 function ClassPost(props) {
-    const APIstring = "http://localhost:8080/api";
+    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
     const [classData, setClassData] = useState(null);
     useEffect(() => {
         setClassData({

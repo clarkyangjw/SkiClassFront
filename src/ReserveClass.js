@@ -6,13 +6,13 @@ import { useHistory } from 'react-router-dom';
 
 
 function ReserveClass(props) {
-    const APIstring = "http://localhost:8080/api";
+    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
     const [currentClass, setCurrentClass] = useState({});
     const [prevClass, setPrevClass] = useState({});
     // const [addClassId, setAddClasssId] = useState({});
     // const [loading, setLoading] = useState(true);
     let history = useHistory();
-    // let history = useHistory();
+    
     useEffect(() => {
         let token = localStorage.getItem('jwtToken');
         let email = localStorage.getItem('email');

@@ -7,7 +7,7 @@ function MyAccount(props) {
 
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
-    const APIstring = "http://localhost:8080/api";
+    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
     // const [myId, setMyId] = useState();
     //const [found, setFound] = useState(false);
     let history = useHistory();

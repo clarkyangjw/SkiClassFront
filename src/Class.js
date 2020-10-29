@@ -3,10 +3,10 @@ import {Link, Redirect} from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 function Class(props) {
-    const APIstring = "http://localhost:8080/api";
+    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
     const [course, setCourse] = useState({});
     const [loading, setLoading] = useState(true);
-    //const [found, setFound] = useState(false);
+    //const [found, setFound] = useState(false1);
     let history = useHistory();
     useEffect(()=>{
         let token = localStorage.getItem('jwtToken');

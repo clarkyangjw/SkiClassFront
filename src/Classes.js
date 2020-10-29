@@ -28,7 +28,7 @@ class Classes extends Component {
     // }
 
     getData(page) {
-        const APIstring = "http://localhost:8080/api";
+        const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
         return new Promise((resolove, reject) => {
             fetch(`${APIstring}/classes?page=${page}&perPage=10`)
                 .then(res => res.json())
