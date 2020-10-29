@@ -6,11 +6,12 @@ import { Form } from 'react-bootstrap'
 
 
 function ClassPost(props) {
+    const APIstring = "http://localhost:8080/api";
     const [classData, setClassData] = useState(null);
     useEffect(() => {
         setClassData({
             instructorName: "Jason Borne",
-            instructorNum: "110",
+            instructorEmail: "110@skiexpert.com",
             classDate: " ",
             classTime: " ",
             classHours: " ",
@@ -27,7 +28,7 @@ function ClassPost(props) {
     const handleSubmit = (e) => {
         alert('A form was submitted: ' + JSON.stringify(classData));
         e.preventDefault();
-        axios.post('https://quiet-earth-26628.herokuapp.com/api/class', classData)
+        axios.post(`${APIstring}/class`, classData)
             .then(res => {
                 alert('A form was submitted: ' + JSON.stringify(classData));
             })

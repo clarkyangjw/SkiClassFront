@@ -7,13 +7,15 @@ function MyAccount(props) {
 
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
+    const APIstring = "http://localhost:8080/api";
     // const [myId, setMyId] = useState();
     //const [found, setFound] = useState(false);
     let history = useHistory();
     useEffect(() => {
         let token = localStorage.getItem('jwtToken');
         let email = localStorage.getItem('email');
-        fetch(`https://quiet-earth-26628.herokuapp.com/api/userPro/${email}`, {
+        // alert(email + token);
+        fetch(`${APIstring}/userPro/${email}`, {
             method: "GET",
             headers: {
                 'Authorization': token
@@ -23,7 +25,7 @@ function MyAccount(props) {
             .then(result => {
                 if (result) { // a "data" property exists on the returned data
                     setProfile(result);
-                    
+                    // alert(profile);
                     // console.log(profile.Reviews.length)
                     //setFound(true); // we found some data
                     setLoading(false); // no longer loading
@@ -33,6 +35,104 @@ function MyAccount(props) {
                 }
             });
     }, [props.id]);
+
+    function cancelClickHandler(id) {
+        const classId = id
+        let RegistedNum = 0;
+        let token1 = localStorage.getItem('jwtToken');
+        let email = localStorage.getItem('email');
+        // alert(email + token1)
+        fetch(`${APIstring}/userPro/${email}`, {
+            method: "GET",
+            headers: {
+                'Authorization': token1
+            }
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result) { // a "data" property exists on the returned data
+
+                    let curClass = result.reservedClass;
+                    // alert("My class: " + JSON.stringify(curClass));
+                    for (let i = 0; i < curClass.length; i++) {
+                        if (curClass[i].class._id === classId) {
+                            curClass[i].isCancel = true;
+                            // alert(curClass[i].isCancel);
+                            console.log("My class: " + JSON.stringify(curClass));
+                           
+                        }
+                    }
+                    fetch(`${APIstring}/userPro/${email}`, {
+                        method: "PUT",
+                        headers: {
+                            "content-type": "application/json",
+                            "accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            "reservedClass": curClass
+                        })
+
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            if (result) {
+                                console.log(JSON.stringify(result));
+                            }
+                            // history.push("/account")
+                        });
+                    // console.log(profile.Reviews.length)
+                    //setFound(true); // we found some data
+                    // setLoading(false); // no longer loading
+                } else {
+                    // setFound(false); // we did not find any data
+                    // setLoading(false); // no longer loading
+                }
+            });
+
+
+
+        let token = localStorage.getItem('jwtToken');
+        
+        fetch(`${APIstring}/class/${classId}`, {
+            method: "GET",
+            headers: {
+                'Authorization': token
+            }
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result) { // a "data" property exists on the returned data
+
+                    RegistedNum = result.RegistedNumber;
+                    
+                    RegistedNum--;
+                    
+                    fetch(`${APIstring}/class/${classId}`, {
+                        method: "PUT",
+                        headers: {
+                            'Authorization': token,
+                            "content-type": "application/json",
+                            "accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            "RegistedNumber": RegistedNum
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            if (result) {
+
+                                console.log(JSON.stringify(result));
+                                alert("Class cancel successfully!");
+                                window.location.href="/account"
+                            }
+                        });
+                } else {
+
+                }
+            });
+
+    }
 
     //alert(found);
     if (loading) {
@@ -47,10 +147,10 @@ function MyAccount(props) {
 
                 <div>
 
-                    
-                    <h3 >Hi <span style={{color: "BlueViolet",fontFamily: "Menlo"}}>{profile.name}</span>!</h3>
+
+                    <h3 >Hi <span style={{ color: "BlueViolet", fontFamily: "Menlo" }}>{profile.name}</span>!</h3>
                     <br />
-                    <h4><a  onClick={()=>{history.push(`/userpro/${profile.email}`)}}>Editer </a> my profile</h4>
+                    <h4><a onClick={() => { history.push(`/userpro/${profile.email}`) }}>Editer </a> my profile</h4>
                     <br />
                     <ul className="list-group">
                         <li className="list-group-item"><strong>My Sport: </strong>{profile.skiSnowboard} </li>
@@ -61,42 +161,83 @@ function MyAccount(props) {
                         {/* <li className="list-group-item"><strong>Reserved class: </strong> {(profile.reservedClass.length === 0) ? "I have'nt reserve a class" : profile.reservedClass.map(lo => ("#" + lo + " "))}</li> */}
                     </ul>
                     <div >
-                        <h4>My class:</h4>
+
+
                         <div>{(profile.reservedClass.length === 0) ?
-                            <div>I have'nt reserve a class
+                            <div><h4>I have'nt reserve a class</h4>
 
-                        </div> :
-                            <Table hover>
-                            <thead>
-                                <tr>
-                                    <th>Reserve Date</th>
-                                    <th>Location</th>
-                                    <th>Class Date</th>
-                                    <th>Class Time</th>
-                                    <th>Class Level</th>
-                                    <th>Instructor</th>
-                                    <th>Price</th>
-                                    <th>Notice</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {profile.reservedClass.map(cla => (
-                                    <tr >
-                                        <td>{  new Date(cla.reserveDate).toLocaleDateString()}</td>
-                                        <td>{cla.class.classLocation}</td>
-                                        <td>{new Date(cla.class.classDate).toLocaleDateString()}</td>
-                                        <td>{cla.class.classTime}</td>
-                                        <td>{cla.class.classLevel}</td>
-                                        <td>{cla.class.instructorName}</td>
-                                        <td> {(cla.class.Price === 0 || isNaN(cla.class.Price)) ? "Free" : `$ ${cla.class.Price}`}</td>
-                                        <td>{cla.class.classDes}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
+                            </div> : <div>
 
-                        </Table>}
+                                <h4 style={{ color: "Green" }}>My reserved class:</h4>
+                                <Table hover>
+                                    <thead>
+                                        <tr>
+                                            <th>Reserve Date</th>
+                                            <th>Location</th>
+                                            <th>Class Date</th>
+                                            <th>Class Time</th>
+                                            <th>Class Level</th>
+                                            <th>Instructor</th>
+                                            <th>Instructor Email</th>
+                                            <th>Price</th>
+                                            <th>Notice</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {profile.reservedClass.map(cla => ((cla.isCancel) ? '' :
+                                            <tr >
+                                                <td>{new Date(cla.reserveDate).toLocaleDateString()}</td>
+                                                <td>{cla.class.classLocation}</td>
+                                                <td>{new Date(cla.class.classDate).toLocaleDateString()}</td>
+                                                <td>{cla.class.classTime}</td>
+                                                <td>{cla.class.classLevel}</td>
+                                                <td>{cla.class.instructorName}</td>
+                                                <td>{cla.class.instructorEmail}</td>
+                                                <td>{(cla.class.Price === 0 || isNaN(cla.class.Price)) ? "Free" : `$ ${cla.class.Price}`}</td>
+                                                <td>{cla.class.classDes}</td>
+                                                <button onClick={() => cancelClickHandler(cla.class._id)} >Cancel class</button>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+
+                                </Table>
+                                <h4 style={{ color: "red" }}>My cancelled class:</h4>
+                                <Table hover>
+
+                                    <thead>
+                                        <tr>
+                                            <th>Reserve Date</th>
+                                            <th>Location</th>
+                                            <th>Class Date</th>
+                                            <th>Class Time</th>
+                                            <th>Class Level</th>
+                                            <th>Instructor</th>
+                                            <th>Instructor Email</th>
+                                            <th>Price</th>
+                                            <th>Notice</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {profile.reservedClass.map(cla => ((!cla.isCancel) ? '' :
+                                            <tr >
+                                                <td>{new Date(cla.reserveDate).toLocaleDateString()}</td>
+                                                <td>{cla.class.classLocation}</td>
+                                                <td>{new Date(cla.class.classDate).toLocaleDateString()}</td>
+                                                <td>{cla.class.classTime}</td>
+                                                <td>{cla.class.classLevel}</td>
+                                                <td>{cla.class.instructorName}</td>
+                                                <td>{cla.class.instructorEmail}</td>
+                                                <td>{(cla.class.Price === 0 || isNaN(cla.class.Price)) ? "Free" : `$ ${cla.class.Price}`}</td>
+                                                <td>{cla.class.classDes}</td>
+                                                {/* <button onClick={() => cancelClickHandler(cla.class._id)} >Cancel class</button> */}
+                                            </tr>
+                                        ))}
+                                    </tbody>
+
+                                </Table>
+                            </div>}
                         </div>
-                        
+
                     </div>
 
 

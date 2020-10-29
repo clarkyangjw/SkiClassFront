@@ -8,22 +8,23 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 
 function Login(props) {
-    
+    const APIstring = "http://localhost:8080/api";
     // const [context, setContext] = useContext(Context);
     
     
     let history = useHistory();
     const initialValues = {
         email: '',
-        password: '',
+        password: ''
     }
     const validationSchema = Yup.object({
         email: Yup.string().email('Invalid email format').required('required'),
         password: Yup.string().required('required')
     })
-
+    
     const onSubmit = (values) => {
-        axios.post('https://quiet-earth-26628.herokuapp.com/api/login', values)
+        // alert(values);
+        axios.post(`${APIstring}/login`, values)
             .then(res => {
                 localStorage.setItem('email', values.email)
                 localStorage.setItem('login', true)

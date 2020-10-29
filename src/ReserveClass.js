@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 
 function ReserveClass(props) {
+    const APIstring = "http://localhost:8080/api";
     const [currentClass, setCurrentClass] = useState({});
     const [prevClass, setPrevClass] = useState({});
     // const [addClassId, setAddClasssId] = useState({});
@@ -15,7 +16,8 @@ function ReserveClass(props) {
     useEffect(() => {
         let token = localStorage.getItem('jwtToken');
         let email = localStorage.getItem('email');
-        fetch(`https://quiet-earth-26628.herokuapp.com/api/class/${props.id}`, {
+        // alert(token+email)
+        fetch(`${APIstring}/class/${props.id}`, {
             method: "GET",
             headers: {
                 'Authorization': token
@@ -28,7 +30,7 @@ function ReserveClass(props) {
 
                 }
             });
-        fetch(`https://quiet-earth-26628.herokuapp.com/api/userPro/${email}`, {
+        fetch(`${APIstring}/userPro/${email}`, {
             method: "GET",
             headers: {
                 'Authorization': token
@@ -49,7 +51,7 @@ function ReserveClass(props) {
         let token = localStorage.getItem('jwtToken');
         let availableNum = 0;
         let registnum = 1;
-        fetch(`https://quiet-earth-26628.herokuapp.com/api/class/${props.id}`, {
+        fetch(`${APIstring}/class/${props.id}`, {
             method: "GET",
             headers: {
                 'Authorization': token
@@ -63,7 +65,7 @@ function ReserveClass(props) {
                     registnum += result.RegistedNumber
                     
                     if (availableNum > 0) {
-                        fetch(`https://quiet-earth-26628.herokuapp.com/api/class/${props.id}`, {
+                        fetch(`${APIstring}/class/${props.id}`, {
                             method: "PUT",
                             headers: {
                                 'Authorization': token,
@@ -90,7 +92,8 @@ function ReserveClass(props) {
 
                     let curr = {
                         class: currentClass,
-                        reserveDate: Date()
+                        reserveDate: Date(),
+                        isCancel: false
                     };
                     prev.push(curr);
 
@@ -100,7 +103,7 @@ function ReserveClass(props) {
                     // }
                     let email = localStorage.getItem('email');
 
-                    fetch(`https://quiet-earth-26628.herokuapp.com/api/userPro/${email}`, {
+                    fetch(`${APIstring}/userPro/${email}`, {
                         method: "PUT",
                         headers: {
                             "content-type": "application/json",

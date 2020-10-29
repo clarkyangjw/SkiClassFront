@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 
 function Register(props) {
+    const APIstring = "http://localhost:8080/api";
     let history = useHistory();
     const initialValues = {
         email: '',
@@ -24,10 +25,10 @@ function Register(props) {
 
         //alert('A form was submitted: ' + JSON.stringify(values));
         //e.preventDefault();
-        axios.post('https://quiet-earth-26628.herokuapp.com/api/register', values)
+        axios.post(`${APIstring}/register`, values)
             .then(res => {
                 //alert('A form was submitted: ' + JSON.stringify(values));
-                axios.post('https://quiet-earth-26628.herokuapp.com/api/userPro', values).then(res =>{
+                axios.post(`${APIstring}/userPro`, values).then(res =>{
                     console.log(res);
                 }).catch(err=>{
                     console.log(err);

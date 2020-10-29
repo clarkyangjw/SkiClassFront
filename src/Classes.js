@@ -6,6 +6,7 @@ import { Table, Pagination } from 'react-bootstrap'
 import { withRouter } from 'react-router'
 
 class Classes extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -13,7 +14,7 @@ class Classes extends Component {
             currentPage: 1,
             isLoaded: false,
         }
-       
+        
         this.previousPage = this.previousPage.bind(this);
         this.nextPage = this.nextPage.bind(this);
         // this.clickHandler = this.clickHandler.bind(this);
@@ -27,8 +28,9 @@ class Classes extends Component {
     // }
 
     getData(page) {
+        const APIstring = "http://localhost:8080/api";
         return new Promise((resolove, reject) => {
-            fetch(`https://quiet-earth-26628.herokuapp.com/api/classes?page=${page}&perPage=10`)
+            fetch(`${APIstring}/classes?page=${page}&perPage=10`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

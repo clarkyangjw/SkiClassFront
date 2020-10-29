@@ -3,14 +3,15 @@ import {Link, Redirect} from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 function Class(props) {
-
+    const APIstring = "http://localhost:8080/api";
     const [course, setCourse] = useState({});
     const [loading, setLoading] = useState(true);
     //const [found, setFound] = useState(false);
     let history = useHistory();
     useEffect(()=>{
         let token = localStorage.getItem('jwtToken');
-        fetch(`https://quiet-earth-26628.herokuapp.com/api/class/${props.id}`,{
+        // alert(token);
+        fetch(`${APIstring}/class/${props.id}`,{
             method: "GET",
             headers: {
                 'Authorization' : token

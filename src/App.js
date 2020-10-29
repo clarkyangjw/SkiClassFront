@@ -29,7 +29,7 @@ function App() {
       setIsLogin(localStorage.getItem('login'));
     }
 
-    console.log("asdasd11 " + isLogin);
+    // console.log("asdasd11 " + isLogin);
   })
 
   // console.log("after use " + isLogin);
@@ -48,7 +48,6 @@ function App() {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-
             <LinkContainer to="/About">
               <NavItem eventKey={1}>About us</NavItem>
             </LinkContainer>

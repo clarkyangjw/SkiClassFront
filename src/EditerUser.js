@@ -5,12 +5,13 @@ import FormikControl from './tool/FormikControl';
 import { useHistory } from 'react-router-dom';
 
 function EditerUser(props) {
+    const APIstring = "http://localhost:8080/api";
     const [profile, setProfile] = useState({});
     let history = useHistory();
     useEffect(() => {
         let token = localStorage.getItem('jwtToken');
         //let email = localStorage.getItem('email');
-        fetch(`https://quiet-earth-26628.herokuapp.com/api/userPro/${props.id}`, {
+        fetch(`${APIstring}/userPro/${props.id}`, {
             method: "GET",
             headers: {
                 'Authorization': token
@@ -84,11 +85,11 @@ function EditerUser(props) {
 
     const onSubmit = value =>{
          
-        if (value.name.trim() == ""){
+        if (value.name.trim() === ""){
             value.name = profile.name;
         }
         console.log(value);
-        fetch(`https://quiet-earth-26628.herokuapp.com/api/userPro/${props.id}`, {
+        fetch(`${APIstring}/userPro/${props.id}`, {
                         method: "PUT",
                         headers: {
                             "content-type": "application/json",
@@ -131,10 +132,10 @@ function EditerUser(props) {
                                 <FormikControl control='input'  label='Name' name='name' placeholder={profile.name}/><br/>
                                 <FormikControl control='select'  label='Sport' name='skiSnowboard' options = {sportDropdownOptions}/><br/>
                                 <FormikControl control='select'  label='Level' name='skiLevel' options = {leveLDropdownOptions}/><br/>
-                                
+                                <FormikControl control='checkbox'  label='My Tag: ' name='Taget' options = {tagsCheckboxOption}/><br/><br/>
                                 <FormikControl control='checkbox'  label='My Location:' name='favoriteLocation' options = {locationCheckboxOption}/><br/><br/>
                                 
-                                <FormikControl control='checkbox'  label='My Tag: ' name='Taget' options = {tagsCheckboxOption}/><br/><br/>
+                                
                                 <button type="submit" >Save my profile</button>
                             </Form>
                         )
