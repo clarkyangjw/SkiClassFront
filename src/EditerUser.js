@@ -129,11 +129,11 @@ function EditerUser(props) {
                         return(
                             <Form>
                                 {/* <input control='text'  label='name' name='name' placeholder = {profile.name}></input> */}
-                                <FormikControl control='input'  label='Name' name='name' placeholder={profile.name}/><br/>
-                                <FormikControl control='select'  label='Sport' name='skiSnowboard' options = {sportDropdownOptions}/><br/>
-                                <FormikControl control='select'  label='Level' name='skiLevel' options = {leveLDropdownOptions}/><br/>
-                                <FormikControl control='checkbox'  label='My Tag: ' name='Taget' options = {tagsCheckboxOption}/><br/><br/>
-                                <FormikControl control='checkbox'  label='My Location:' name='favoriteLocation' options = {locationCheckboxOption}/><br/><br/>
+                                <FormikControl control='input'  label='Name' name='name' placeholder={profile.name}/><br/><br/>
+                                <FormikControl control='select'  label='Sport' name='skiSnowboard' options = {sportDropdownOptions}/><br/><br/>
+                                <FormikControl control='select'  label='Level' name='skiLevel' options = {leveLDropdownOptions}/><br/><br/>
+                                <FormikControl control='checkbox'  label='My Tag: ' name='Taget' options = {tagsCheckboxOption}/><br/><br/><br/>
+                                <FormikControl control='checkbox'  label='My Location:' name='favoriteLocation' options = {locationCheckboxOption}/><br/><br/><br/>
                                 
                                 
                                 <button type="submit" >Save my profile</button>

@@ -54,6 +54,7 @@ function Class(props) {
                         <li className="list-group-item"><strong>Date: </strong> {new Date(course.classDate).toLocaleDateString()}</li>
                         <li className="list-group-item"><strong>Time: </strong> {course.classTime}</li>
                         <li className="list-group-item"><strong>Class Location: </strong> {course.classLocation}</li>
+                        <li className="list-group-item"><strong>Class capacity: </strong> {course.classCap}</li>
                         <li className="list-group-item"><strong>Available Site: </strong> {course.classCap - course.RegistedNumber}</li>
                         <li className="list-group-item"><strong>Instructor: </strong> {course.instructorName}</li>
                         <li className="list-group-item"><strong>Price: </strong> {(course.Price === 0 || isNaN(course.Price)) ? "Free" : course.Price}</li>

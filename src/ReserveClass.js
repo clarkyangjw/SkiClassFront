@@ -139,6 +139,7 @@ function ReserveClass(props) {
                 <li className="list-group-item"><strong>Date: </strong> {new Date(currentClass.classDate).toLocaleDateString()}</li>
                 <li className="list-group-item"><strong>Time: </strong> {currentClass.classTime}</li>
                 <li className="list-group-item"><strong>Class Location: </strong> {currentClass.classLocation}</li>
+                <li className="list-group-item"><strong>Class capacity: </strong> {currentClass.classCap}</li>
                 <li className="list-group-item"><strong>Available Site: </strong> {currentClass.classCap - currentClass.RegistedNumber}</li>
                 <li className="list-group-item"><strong>Instructor: </strong> {currentClass.instructorName}</li>
                 <li className="list-group-item"><strong>Price: </strong> {(currentClass.Price === 0 || isNaN(currentClass.Price)) ? "Free" : currentClass.Price}</li>
@@ -153,7 +154,7 @@ function ReserveClass(props) {
                  
                 :
                 <div>
-                    <h4>This class is Full, Please check another class!!</h4>
+                    <h4>This class is <span style={{ color: "red" }}>Full</span>, please check another class!</h4>
                     <Link className="btn btn-primary" to="/classes">Find a class</Link>
                 </div>
             }
