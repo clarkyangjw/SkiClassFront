@@ -1,7 +1,26 @@
 span.navbar-brand:hover{
   cursor: pointer;
 }
-
+#footerContainer{
+  display:grid;
+    grid-template-columns:  1fr 1fr;
+    
+}
+#footerContainer>div>a{
+  margin-left:4rem;
+}
+#youtubeSocial{
+  color: #eb3223;
+}
+#facebookSocial{
+  color: #4968ad;
+}
+#twitterSocial{
+  color: #49a1eb;
+}
+#instagramSocial{
+  color: #DDDDCC;
+}
 /* .App {
   text-align: center;
 }

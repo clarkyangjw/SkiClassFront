@@ -20,12 +20,7 @@ class Classes extends Component {
         // this.clickHandler = this.clickHandler.bind(this);
     }
 
-    // clickHandler(num){
-    //     console.log("asdasd");
-    //     return(
-    //     <Redirect push to={`/class/${num}`} />
-    //     )
-    // }
+   
 
     getData(page) {
         const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
@@ -97,7 +92,7 @@ class Classes extends Component {
                         </thead>
                         <tbody>
                             {this.state.classes.map(cla => (
-                                // <tr key={cla._id} onClick={()=>{this.props.history.push(`/class/${cla._id}`)}}></tr>
+                            
                                 <tr key={cla._id} onClick={()=>{this.props.history.push(`/class/${cla._id}`)}}>
                                     <td>{cla.classLocation}</td>
                                     <td>{new Date(cla.classDate).toLocaleDateString()}</td>
