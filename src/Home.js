@@ -11,7 +11,7 @@ function Home(props) {
             <h4 style={{'text-align': 'center'}}>Happy Skiing</h4>
             <br/>
             <br/>
-            <br/>
+           
 
            
             {/* <p>This is a project website. No payment needed. Thanks!</p> */}

@@ -58,7 +58,7 @@ function Login(props) {
                 }
                 {/* <Link className="btn btn-primary" to="/register">register</Link> */}
             </Formik><br/><br/>
-            <h4>Doesn't have a account?  <a  onClick={()=>{history.push(`/register`)}}>  Register now </a> and reserve you class!</h4>
+            <h4>Doesn't have a account?  <a style={{ cursor: "pointer"}} onClick={()=>{history.push(`/register`)}}>  Register now </a> and reserve you class!</h4>
             
         </div>
 
