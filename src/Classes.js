@@ -111,7 +111,6 @@ class Classes extends Component {
                                 </tr>
                             ))}
                         </tbody>
-
                     </Table>
                     <Pagination>
                         <Pagination.Prev onClick={this.previousPage} />
@@ -127,6 +126,9 @@ class Classes extends Component {
                 
                 <div>
                     <p>
+                        First time open this page, please wait for API loading...
+                    </p>
+                    <p>
                         A cat may look at a king (^o^).
                     </p>
                 <Pagination>
@@ -135,8 +137,6 @@ class Classes extends Component {
                         {/* <Pagination.Next onClick={this.nextPage} /> */}
                     </Pagination>
                 </div>
-
-
             );
         }
 

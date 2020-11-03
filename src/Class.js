@@ -61,7 +61,7 @@ function Class(props) {
                         <li className="list-group-item"><strong>Class description: </strong> {course.classDes}</li>
                     </ul>
     
-                    <h4><a  onClick={()=>{history.push(`/reserve/${course._id}`)}}>Click </a>to reserve this class or <a  onClick={()=>{history.push(`/classes`)}}>Back </a> to all class page</h4>
+                    <h4><a style={{ cursor: "pointer"}} onClick={()=>{history.push(`/reserve/${course._id}`)}}>Click </a>to reserve this class or <a style={{ cursor: "pointer"}} onClick={()=>{history.push(`/classes`)}}>Back </a> to all class page</h4>
                     {/* <Link className="btn btn-primary" to="/reserve" params={{ id: "${props.id}" }} >Reserve this class</Link> */}
 
                     {/* <Link className="btn btn-primary" to="/classes">Back to all class</Link> */}

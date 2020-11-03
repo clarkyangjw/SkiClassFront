@@ -150,7 +150,7 @@ function MyAccount(props) {
 
                     <h3 >Hi <span style={{ color: "BlueViolet", fontFamily: "Menlo" }}>{profile.name}</span>!</h3>
                     <br />
-                    <h4><a onClick={() => { history.push(`/userpro/${profile.email}`) }}>Editer </a> my profile</h4>
+                    <h4><a style={{ cursor: "pointer"}} onClick={() => { history.push(`/userpro/${profile.email}`) }}>Editerr </a> my profile</h4>
                     <br />
                     <ul className="list-group">
                         <li className="list-group-item"><strong>My Sport: </strong>{profile.skiSnowboard} </li>
