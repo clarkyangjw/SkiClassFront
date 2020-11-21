@@ -20,7 +20,7 @@ function Home(props) {
                 <Carousel.Item >
                     <img
                         className="d-block w-100 h-50"
-                        src={process.env.PUBLIC_URL +"/imag/1.jpg"}
+                        src={process.env.PUBLIC_URL +"/imag/11.jpg"}
                         alt="First slide"
                         // style={{'vertical-align':"middle"}}
                     />
@@ -32,7 +32,7 @@ function Home(props) {
                 <Carousel.Item style={{'height':""}}>
                     <img
                         className="d-block w-100"
-                        src={process.env.PUBLIC_URL +"/imag/2.jpg"}
+                        src={process.env.PUBLIC_URL +"/imag/22.jpg"}
                         alt="Second slide"
                     />
                     <Carousel.Caption>
@@ -43,7 +43,7 @@ function Home(props) {
                 <Carousel.Item >
                     <img
                         className="d-block w-100"
-                        src={process.env.PUBLIC_URL +"/imag/3.jpg"}
+                        src={process.env.PUBLIC_URL +"/imag/33.jpg"}
                         alt="Third slide"
                     />
                     <Carousel.Caption>
@@ -54,7 +54,7 @@ function Home(props) {
                 <Carousel.Item >
                     <img
                         className="d-block w-100"
-                        src={process.env.PUBLIC_URL +"/imag/4.jpg"}
+                        src={process.env.PUBLIC_URL +"/imag/44.jpg"}
                         alt="Fourth slide"
                     />
                     <Carousel.Caption>
