@@ -147,9 +147,7 @@ function App() {
               </LinkContainer> */}
 
 
-              <LinkContainer to="/account">
-                <NavItem eventKey={4}>My account</NavItem>
-              </LinkContainer>
+              
 
 
 
@@ -163,6 +161,9 @@ function App() {
             </Nav>
 
             <Nav pullRight>
+              <LinkContainer to="/account">
+                <NavItem eventKey={4}>My account</NavItem>
+              </LinkContainer>
               <LinkContainer to="/logout">
                 <NavItem eventKey={1}>Logout</NavItem>
               </LinkContainer>

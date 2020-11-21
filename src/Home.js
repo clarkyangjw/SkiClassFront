@@ -14,8 +14,8 @@ function Home(props) {
            
 
            
-            {/* <p>This is a project website. No payment needed. Thanks!</p> */}
-            <div style={{'height':"540px", 'width':"720px", "margin-left": "auto", "margin-right": "auto"}}>
+            {/* <p>This is a project website. No payment needed. Thanks!</p> style={{'height':"540px", 'width':"720px", "margin-left": "auto", "margin-right": "auto"}} */}
+            <div >
             <Carousel >
                 <Carousel.Item >
                     <img
@@ -62,17 +62,7 @@ function Home(props) {
                         <p>Sunny ski day</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item >
-                    <img
-                        className="d-block w-100"
-                        src={process.env.PUBLIC_URL +"/imag/5.jpg"}
-                        alt="Fifth slide"
-                    />
-                    <Carousel.Caption>
-                        <h3>Mont-Tremblant</h3>
-                        <p>Sunny ski day</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
+                
                 
                 
                 

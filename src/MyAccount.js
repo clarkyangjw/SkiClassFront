@@ -159,8 +159,6 @@ function MyAccount(props) {
                         {/* <li className="list-group-item"><strong>Reserved class: </strong> {(profile.reservedClass.length === 0) ? "I have'nt reserve a class" : profile.reservedClass.map(lo => ("#" + lo + " "))}</li> */}
                     </ul>
                     <div >
-
-
                         <div>{(profile.reservedClass.length === 0) ?
                             <div><h4>I have'nt reserve a class</h4>
 
