@@ -1,9 +1,10 @@
 import React, { useState, useEffect} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import {DataApi} from './API'
 
 function Class(props) {
-    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
+    const APIstring = DataApi;
     const [course, setCourse] = useState({});
     const [loading, setLoading] = useState(true);
     //const [found, setFound] = useState(false1);

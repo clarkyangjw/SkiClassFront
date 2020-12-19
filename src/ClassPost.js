@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { Form } from 'react-bootstrap'
+import { DataApi } from './API'
 //import Button from 'react-bootstrap/Button';
 
 
 function ClassPost(props) {
-    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
+    const APIstring = DataApi;
     const [classData, setClassData] = useState(null);
     useEffect(() => {
         setClassData({
@@ -140,18 +141,14 @@ function ClassPost(props) {
                         Class price:
                 <input type="number" name="Price" value={classData.Price} onChange={handleChange} />
                     </label><br />
-                    
+
                     <button type="submit">Submit</button>
 
                 </Form>
             </div>
         );
     }
-    // return (
-    //     <div>
 
-    //     </div>
-    // );
 }
 
 export default ClassPost;

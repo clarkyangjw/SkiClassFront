@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-
+import {DataApi} from './API'
 
 
 function ReserveClass(props) {
-    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
+    const APIstring = DataApi;
     const [currentClass, setCurrentClass] = useState({});
     const [prevClass, setPrevClass] = useState({});
     // const [addClassId, setAddClasssId] = useState({});

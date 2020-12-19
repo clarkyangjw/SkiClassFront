@@ -6,9 +6,10 @@ import FormikControl from './tool/FormikControl'
 import axios from 'axios'
 // import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import {DataApi} from './API'
 
 function Login(props) {
-    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
+    const APIstring = DataApi;
     // const [context, setContext] = useContext(Context);
     
     

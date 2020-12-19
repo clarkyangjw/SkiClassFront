@@ -5,9 +5,10 @@ import FormikControl from './tool/FormikControl'
 import axios from 'axios'
 // import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import {DataApi} from './API'
 
 function Register(props) {
-    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
+    const APIstring = DataApi;
     let history = useHistory();
     const initialValues = {
         email: '',

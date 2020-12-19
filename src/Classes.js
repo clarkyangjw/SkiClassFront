@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 //import { withRouter, useHistory, Redirect  } from 'react-router-dom';
 import { Table, Pagination } from 'react-bootstrap'
 import { withRouter } from 'react-router'
+import {DataApi} from './API'
 
 class Classes extends Component {
     
@@ -14,7 +15,7 @@ class Classes extends Component {
             currentPage: 1,
             isLoaded: false,
         }
-        
+       
         this.previousPage = this.previousPage.bind(this);
         this.nextPage = this.nextPage.bind(this);
         // this.clickHandler = this.clickHandler.bind(this);
@@ -23,7 +24,8 @@ class Classes extends Component {
    
 
     getData(page) {
-        const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
+        const APIstring = DataApi;
+        // const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
         return new Promise((resolove, reject) => {
             fetch(`${APIstring}/classes?page=${page}&perPage=10`)
                 .then(res => res.json())

@@ -68,7 +68,8 @@ function Home(props) {
                 
             </Carousel>
             </div>
-            
+            <br/>
+            <br/>
         </div>
     );
 }

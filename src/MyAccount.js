@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Table } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
+import {DataApi} from './API'
 
 function MyAccount(props) {
 
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
-    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
+    const APIstring = DataApi;
     // const [myId, setMyId] = useState();
     //const [found, setFound] = useState(false);
     let history = useHistory();

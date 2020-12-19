@@ -3,9 +3,10 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import FormikControl from './tool/FormikControl';
 import { useHistory } from 'react-router-dom';
+import {DataApi} from './API'
 
 function EditerUser(props) {
-    const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
+    const APIstring = DataApi;
     const [profile, setProfile] = useState({});
     let history = useHistory();
     useEffect(() => {
