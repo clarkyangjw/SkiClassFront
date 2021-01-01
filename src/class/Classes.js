@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 //import { withRouter, useHistory, Redirect  } from 'react-router-dom';
 import { Table, Pagination } from 'react-bootstrap'
 import { withRouter } from 'react-router'
-import {DataApi} from './API'
+import {DataApi} from '../API'
 
 class Classes extends Component {
     
@@ -14,8 +14,9 @@ class Classes extends Component {
             classes: [],
             currentPage: 1,
             isLoaded: false,
+            currentDate: new Date(),
         }
-       
+        
         this.previousPage = this.previousPage.bind(this);
         this.nextPage = this.nextPage.bind(this);
         // this.clickHandler = this.clickHandler.bind(this);
@@ -25,12 +26,11 @@ class Classes extends Component {
 
     getData(page) {
         const APIstring = DataApi;
-        // const APIstring = "https://sheltered-stream-35085.herokuapp.com/api";
         return new Promise((resolove, reject) => {
             fetch(`${APIstring}/classes?page=${page}&perPage=10`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    //console.log(data);
                     resolove(data);
 
                 })
@@ -94,6 +94,8 @@ class Classes extends Component {
                         </thead>
                         <tbody>
                             {this.state.classes.map(cla => (
+                                
+                                
                             
                                 <tr key={cla._id} onClick={()=>{this.props.history.push(`/class/${cla._id}`)}}>
                                     <td>{cla.classLocation}</td>
@@ -102,9 +104,11 @@ class Classes extends Component {
                                     <td>{cla.instructorName}</td>
                                     <td>{cla.classLevel}</td>
                                     <td>{cla.classType}</td>
-                                    <td>{(cla.classCap - cla.RegistedNumber)>0? (cla.classCap - cla.RegistedNumber) : "Full" }</td>
+                                    {/* <td>{(cla.classCap - cla.RegistedNumber)>0? (cla.classCap - cla.RegistedNumber) : "Full" }</td> */}
+                                    {(cla.classCap - cla.RegistedNumber) > 0 ? <td>{cla.classCap - cla.RegistedNumber}</td> : <td style={{ color: "red" }}>Full</td> }
                                     {/* <td>{cla.classCap - cla.RegistedNumber}</td> */}
-                                    <td> {(cla.Price === 0 || isNaN(cla.Price)) ? "Free" : `$ ${cla.Price}` }</td>
+                                    
+                                    {(cla.Price === 0 || isNaN(cla.Price)) ? <td style={{ backgroundColor: "#99ff99" }}>Free</td> : <td>${cla.Price}</td> }
                                 </tr>
                             ))}
                         </tbody>

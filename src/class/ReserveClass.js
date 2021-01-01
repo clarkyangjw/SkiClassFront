@@ -2,20 +2,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import {DataApi} from './API'
+import { DataApi } from '../API'
+// import CheckInstructor from '../instructor/CheckInstructor';
+// import Modal from 'react-modal';
 
 
 function ReserveClass(props) {
     const APIstring = DataApi;
     const [currentClass, setCurrentClass] = useState({});
     const [prevClass, setPrevClass] = useState({});
-    // const [addClassId, setAddClasssId] = useState({});
-    // const [loading, setLoading] = useState(true);
+
     let history = useHistory();
-    
+    let token = localStorage.getItem('jwtToken');
+    let email = localStorage.getItem('email');
     useEffect(() => {
-        let token = localStorage.getItem('jwtToken');
-        let email = localStorage.getItem('email');
+
         // alert(token+email)
         fetch(`${APIstring}/class/${props.id}`, {
             method: "GET",
@@ -63,7 +64,7 @@ function ReserveClass(props) {
                     // setCurrentClass(result);
                     availableNum = result.classCap - result.RegistedNumber;
                     registnum += result.RegistedNumber
-                    
+
                     if (availableNum > 0) {
                         fetch(`${APIstring}/class/${props.id}`, {
                             method: "PUT",
@@ -97,7 +98,7 @@ function ReserveClass(props) {
                     };
                     prev.push(curr);
 
-                    
+
                     // const upclass = {
                     //     reservedClass: JSON.stringify(prev)
                     // }
@@ -122,7 +123,7 @@ function ReserveClass(props) {
                             history.push("/account")
                         });
 
-                    
+
                 }
             });
 
@@ -145,13 +146,20 @@ function ReserveClass(props) {
                 <li className="list-group-item"><strong>Price: </strong> {(currentClass.Price === 0 || isNaN(currentClass.Price)) ? "Free" : currentClass.Price}</li>
                 <li className="list-group-item"><strong>Class description: </strong> {currentClass.classDes}</li>
             </ul>
-
             {(currentClass.classCap - currentClass.RegistedNumber) > 0 ?
                 <div>
-                <button type="submit" onClick={handleSubmit}>Comfirm reserve</button>
-                <h4>Please feel free to reserve a class. All classes are free right now!</h4>
+                    {
+                        (email === currentClass.instructorEmail) ?
+                            <div> 
+                                <h4><span style={{ color: "red" }}>You can not reserve a class posted by yourself.  </span> <a style={{ cursor: "pointer" }} onClick={() => { history.push(`/classes`) }}> Back </a> to all class page</h4>
+                            </div>
+                            : <div>
+                                <button type="submit" onClick={handleSubmit}>Comfirm reserve</button>
+                                <h4>Please feel free to reserve a class. All classes are free right now!</h4>
+                            </div>
+                    }
                 </div>
-                 
+
                 :
                 <div>
                     <h4>This class is <span style={{ color: "red" }}>Full</span>, please check another class!</h4>

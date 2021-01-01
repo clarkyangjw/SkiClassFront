@@ -1,11 +1,10 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import FormikControl from './tool/FormikControl'
+import FormikControl from '../tool/FormikControl'
 import axios from 'axios'
-// import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import {DataApi} from './API'
+import {DataApi} from '../API'
 
 function Register(props) {
     const APIstring = DataApi;
@@ -24,8 +23,6 @@ function Register(props) {
 
     const onSubmit = (values) => {
 
-        //alert('A form was submitted: ' + JSON.s1tringify(values));
-        //e.preventDefault();
         axios.post(`${APIstring}/register`, values)
             .then(res => {
                 //alert('A form was submitted: ' + JSON.stringify(values));

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import FormikControl from './tool/FormikControl'
+import FormikControl from '../tool/FormikControl'
 // import { Context } from "./Context";
 import axios from 'axios'
 // import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import {DataApi} from './API'
+import {DataApi} from '../API'
 
 function Login(props) {
     const APIstring = DataApi;

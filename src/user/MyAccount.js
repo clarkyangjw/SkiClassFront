@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Table } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
-import {DataApi} from './API'
+import {DataApi} from '../API'
 
 function MyAccount(props) {
 
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
+    const [isInstructor, setIsInstructor] = useState(false);
     const APIstring = DataApi;
     // const [myId, setMyId] = useState();
     //const [found, setFound] = useState(false);
@@ -26,7 +27,7 @@ function MyAccount(props) {
             .then(result => {
                 if (result) { // a "data" property exists on the returned data
                     setProfile(result);
-                    // alert(profile);
+                    setIsInstructor(result.isInstructor);
                     // console.log(profile.Reviews.length)
                     //setFound(true); // we found some data
                     setLoading(false); // no longer loading
@@ -81,9 +82,6 @@ function MyAccount(props) {
                             }
                             // history.push("/account")
                         });
-                    // console.log(profile.Reviews.length)
-                    //setFound(true); // we found some data
-                    // setLoading(false); // no longer loading
                 } else {
                     // setFound(false); // we did not find any data
                     // setLoading(false); // no longer loading
@@ -145,11 +143,18 @@ function MyAccount(props) {
     } else {
         if (true) {
             return (
-
+                
                 <div>
                     <h3 >Hi <span style={{ color: "BlueViolet", fontFamily: "Menlo" }}>{profile.name}</span>!</h3>
                     <br />
-                    <h4><a style={{ cursor: "pointer"}} onClick={() => { history.push(`/userpro/${profile.email}`) }}>Edit </a> my profile</h4>
+                    
+                    {
+                    !isInstructor? <h4><a style={{ cursor: "pointer"}} onClick={() => { history.push(`/userpro/${profile.email}`) }}>Edit </a> my profile. <a style={{ cursor: "pointer"}} onClick={() => { history.push(`/registerInstructor`) }}>Register </a> as an instructor</h4>
+                     : <h4><a style={{ cursor: "pointer"}} onClick={() => { history.push(`/userpro/${profile.email}`) }}>Edit </a> my profile. <a style={{ cursor: "pointer"}} onClick={() => { history.push(`/instructorAccount`) }}>Manage </a> my instructor account</h4>
+                    }
+                    
+                    
+                    
                     <br />
                     <ul className="list-group">
                         <li className="list-group-item"><strong>My Sport: </strong>{profile.skiSnowboard} </li>

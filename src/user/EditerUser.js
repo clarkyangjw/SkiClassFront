@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import FormikControl from './tool/FormikControl';
+import FormikControl from '../tool/FormikControl';
 import { useHistory } from 'react-router-dom';
-import {DataApi} from './API'
+import {DataApi} from '../API'
 
 function EditerUser(props) {
     const APIstring = DataApi;
