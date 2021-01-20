@@ -29,7 +29,7 @@ function RegisterInstructor(props) {
         FirstName: Yup.string().required('Frist name is required'),
         LastName: Yup.string().required('Last name is required'),
         AuthorizedInstitution: Yup.string().required('Authorized institution is required'),
-        InstructorLevel: Yup.number().min(1,'Please input a number').max(1,'Please input a number').required('Please input the instructor level'),
+        InstructorLevel: Yup.number().min(1,'Please input a number').max(4,'Please input a number 1-4').required('Please input the instructor level'),
         LisenceNum: Yup.number().min(1,'Please input a number').required('Please input the lisence number'),
         ExpireDate: Yup.string().required('Please input a date'),
     })
